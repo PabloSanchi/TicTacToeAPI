@@ -22,7 +22,7 @@ def minimax(board, depth, is_maximizing):
             
         return best_score
     else:
-        best_score = 800
+        best_score = 1000
         for i in board.get_empty_cells():
             board.board[i] = board.player
             newBoard = copy.deepcopy(board)
