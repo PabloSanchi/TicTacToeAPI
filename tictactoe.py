@@ -3,6 +3,8 @@ import copy
 def minimax(board, depth, is_maximizing):
     if board.is_over():
         if board.get_winner() == board.ai:
+            # print('Gano')
+            # print(board)
             return 100
         else:
             return -100
@@ -14,15 +16,17 @@ def minimax(board, depth, is_maximizing):
         best_score = -1000
         for i in board.get_empty_cells():
             board.board[i] = board.ai
-            score = minimax(board, depth+1, False)
+            newBoard = copy.deepcopy(board)
+            score = minimax(newBoard, depth+1, False)
             best_score = max(score, best_score)
             
         return best_score
     else:
-        best_score = 1000
+        best_score = 800
         for i in board.get_empty_cells():
             board.board[i] = board.player
-            score = minimax(board, depth+1, True)
+            newBoard = copy.deepcopy(board)
+            score = minimax(newBoard, depth+1, True)
             board.board[i] = ''
             best_score = min(score, best_score)
 
@@ -108,9 +112,11 @@ class TicTacToe:
 
         for i in self.get_empty_cells():
             self.board[i] = self.ai # make the move
+            cp = copy.deepcopy(self)
             newSelf = copy.deepcopy(self)
             score = minimax(newSelf, 0, False)
             self.board[i] = '' # remove the move
+
             if score > best_score:
                 best_score = score
                 best_move = i
@@ -131,7 +137,7 @@ class TicTacToe:
             self.board[move] = self.player 
 
 # if __name__ == '__main__':
-#     ai = TicTacToe(['', '', '', '', '', '', '', '', ''])
+#     ai = TicTacToe(['', '', 'X', '', '', '', '', '', ''])
     
 #     print(ai)
 #     print('PLAY TIC TAC TOE')
