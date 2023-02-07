@@ -12,25 +12,15 @@ def minimax(board, depth, is_maximizing):
     if board.is_draw():
         return 0
 
-    if is_maximizing:
-        best_score = -1000
-        for i in board.get_empty_cells():
-            board.board[i] = board.ai
-            newBoard = copy.deepcopy(board)
-            score = minimax(newBoard, depth+1, False)
-            best_score = max(score, best_score)
-            
-        return best_score
-    else:
-        best_score = 1000
-        for i in board.get_empty_cells():
-            board.board[i] = board.player
-            newBoard = copy.deepcopy(board)
-            score = minimax(newBoard, depth+1, True)
-            board.board[i] = ''
-            best_score = min(score, best_score)
+    best_score = -1000 if is_maximizing else 1000
+    for i in board.get_empty_cells():
+        board.board[i] = board.ai if is_maximizing else board.player
+        score = minimax(copy.deepcopy(board), depth+1, not is_maximizing)
+        board.board[i] = ''
+        best_score = max(score, best_score) if is_maximizing else min(score, best_score)
 
-        return best_score
+    return best_score
+
 
 class TicTacToe:
     '''
