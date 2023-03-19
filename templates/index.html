@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tic-Tac-Toe AI Move API Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+</head>
+
+<body>
+
+    <style>
+        pre {
+            background-color: whitesmoke;
+        }
+    </style>
+    <div class="container">
+            <div class="row">
+                <div class="one-half column" style="margin-top: 25%">
+                    <h1>TicTacToeDocs</h1>
+                    <p>This is the documentation for the Free TicTacToe API</p>
+
+                    <p>Source code - <a target="_blank"
+                            href="https://github.com/PabloSanchi/TicTacToeAPI">GitHub repo</a>
+                </div>
+            </div>
+
+
+            <section>
+                <h2>Endpoints</h2>
+                <h3>/aimove</h3>
+                <p>This endpoint returns an AI move given an existing board of Tic-Tac-Toe.</p>
+
+                <p style="color:rgb(165, 109, 82)">
+                    <strong style="color: black">How to call:</strong>
+                    <span style="color: rgb(99, 148, 148)">GET</span>
+                    tic-tac-toe-api-sigma.vercel.app/aimove
+                </p>
+
+
+                <p><strong>Request body:</strong></p>
+                <pre>{
+    "board": [ "X", "", "", "", "X", "", "O", "O", "" ]
+}</pre>
+
+                <p><strong>Response example:</strong></p>
+
+                <pre>{
+    "board": 
+        [ "X", "", "", 
+        "", "X", "", 
+        "O", "O", "O"],
+    "move": 8,
+    "over": true,
+    "tie": false,
+    "winner": "O"
+    }</pre>
+                <p><strong>Response explanation:</strong></p>
+                <ul>
+                    <li><code>"board"</code>: The updated board after the AI move has been made.</li>
+                    <li><code>"move"</code>: The index of the AI's move in the updated board array.</li>
+                    <li><code>"over"</code>: A boolean indicating if the game is over or not.</li>
+                    <li><code>"tie"</code>: A boolean indicating if the game ended in a tie.</li>
+                    <li><code>"winner"</code>: The winner of the game, if there is one.</li>
+                </ul>
+
+            </section>
+        </div>
+
+</body>
+
+</html>
